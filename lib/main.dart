@@ -1,4 +1,5 @@
 import 'package:android_kt_vs_dart_vs_wasm/prime_func.dart';
+import 'package:android_kt_vs_dart_vs_wasm/rusted.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -39,6 +40,7 @@ class _MyHomePageState extends State<MyHomePage> {
   String? selectedDropDown;
   Future<int>? dartFuture;
   Future<int>? kotlinFuture;
+  Future<int>? rustFuture;
 
   @override
   Widget build(BuildContext context) {
@@ -104,6 +106,22 @@ class _MyHomePageState extends State<MyHomePage> {
                     };
                     kotlinFuture =
                         ktFunc(int.parse(selectedDropDown as String));
+                  });
+                }
+              },
+            ),
+            LanguageSection(
+              language: "Rust",
+              selectedDropDown: selectedDropDown,
+              langFuture: rustFuture,
+            ),
+            ElevatedButton(
+              child: const Text("Rust performance test"),
+              onPressed: () async {
+                if (selectedDropDown != null) {
+                  setState(() {
+                    rustFuture = compute(
+                        rustPrimes, int.parse(selectedDropDown as String));
                   });
                 }
               },

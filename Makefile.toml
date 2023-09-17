@@ -1,0 +1,8 @@
+[tasks.flut]
+command = "flutter"
+args = ["run"]
+
+[tasks.build_rs]
+command = "cargo"
+args = ["ndk","-t","armeabi-v7a","-t","arm64-v8a","-t","x86_64","-t", "x86","--no-strip","-o","./jniLibs","build","--release"]
+
