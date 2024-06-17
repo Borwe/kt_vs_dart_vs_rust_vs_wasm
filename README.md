@@ -8,6 +8,9 @@ A project written to test performance of the languages Kotlin, Dart, Rust, Wasm 
 
 - Rust 1.69+
 - Flutter 3.x+
+- go 1.22+
+
+## build rust shared library
 
 - cargo-ndk. Can be installed via cargo with:
 
@@ -23,7 +26,7 @@ A project written to test performance of the languages Kotlin, Dart, Rust, Wasm 
    ```
   
 
-## Running
+### Running
 
 First compile the rust library, then move it to jniLibrary dir of android file using cargo-ndk
 switch to the rust directory and run:
@@ -31,8 +34,22 @@ switch to the rust directory and run:
 ```sh
 cargo ndk -t armeabi-v7a -t arm64-v8a -t x86_64 -t x86 --no-strip -o ../android/app/src/main/jniLibs build --release
 ```
+## Build golang shared library
 
-Run the flutter app
+To build the shared libraries for different Android architectures, change into the goPrimes directory and run the bat file for windows
+or the Makefile for unix systems,ensure that the ndk paths are set correctly.
+
+batch for windows
+```bash
+build_android.bat
+````
+
+Makefile for unix 
+```sh
+make android
+```
+
+## Run the flutter app
 
 ```sh
 flutter run
