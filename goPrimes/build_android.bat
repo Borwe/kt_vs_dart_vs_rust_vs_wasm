@@ -5,7 +5,6 @@ set ANDROID_SDK=%USERPROFILE%\AppData\Local\Android\Sdk\
 
 set NDK_BIN=%ANDROID_SDK%\ndk\27.0.11718014\toolchains\llvm\prebuilt\windows-x86_64\bin\
 
-set OUT_PATH = ../android/app/src/main/jniLibs
 
 rem Build for arm64
 echo Building for arm64...
