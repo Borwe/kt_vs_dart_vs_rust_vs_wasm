@@ -1,11 +1,13 @@
 package main
 
 import (
+	"C"
 	"fmt"
 	"log"
 	"time"
 )
 
+//export getPrimesUntil
 func getPrimesUntil(end int64) int64 {
 	var primes = []int64{2}
 	var factors []int64
@@ -34,6 +36,7 @@ func getPrimesUntil(end int64) int64 {
 	return int64(len(primes))
 }
 
+//export getPrimesOverTime
 func getPrimesOverTime(end int64) int64 {
 	samplePrimes := map[int64]int64{
 		100: 25, 1000: 168, 10000: 1229, 100000: 9592,
