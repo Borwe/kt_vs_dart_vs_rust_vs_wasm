@@ -12,7 +12,7 @@ set CGO_ENABLED=1
 set GOOS=android
 set GOARCH=arm64
 set CC=%NDK_BIN%\aarch64-linux-android35-clang
-go build -buildmode=c-shared -o ../android/app/src/main/jniLibs/arm64-v8a/libprimego.so
+go build -C ./goPrimes -buildmode=c-shared -o ../android/app/src/main/jniLibs/arm64-v8a/libprimego.so
 
 rem Build for armeabi-v7a
 echo Building for armeabi-v7a...
@@ -21,7 +21,7 @@ set GOOS=android
 set GOARCH=arm
 set GOARM=7
 set CC=%NDK_BIN%\armv7a-linux-androideabi35-clang.cmd
-go build -buildmode=c-shared -o ../android/app/src/main/jniLibs/armeabi-v7a/libprimego.so
+go build -C ./goPrimes -buildmode=c-shared -o ../android/app/src/main/jniLibs/armeabi-v7a/libprimego.so
 
 rem Build for x86
 echo Building for x86...
@@ -29,7 +29,7 @@ set CGO_ENABLED=1
 set GOOS=android
 set GOARCH=386
 set CC=%NDK_BIN%\i686-linux-android35-clang.cmd
-go build -buildmode=c-shared -o ../android/app/src/main/jniLibs/x86/libprimego.so
+go build -C ./goPrimes -buildmode=c-shared -o ../android/app/src/main/jniLibs/x86/libprimego.so
 
 rem Build for x86_64
 echo Building for x86_64...
@@ -37,7 +37,7 @@ set CGO_ENABLED=1
 set GOOS=android
 set GOARCH=amd64
 set CC=%NDK_BIN%\x86_64-linux-android35-clang.cmd
-go build -buildmode=c-shared -o ../android/app/src/main/jniLibs/x86_64/libprimego.so
+go build -C ./goPrimes -buildmode=c-shared -o ../android/app/src/main/jniLibs/x86_64/libprimego.so
 
 echo Done!
 pause
