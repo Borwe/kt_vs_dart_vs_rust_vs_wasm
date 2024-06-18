@@ -4,6 +4,8 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
+import 'godart.dart';
+
 void main() {
   runApp(const MyApp());
 }
@@ -41,6 +43,17 @@ class _MyHomePageState extends State<MyHomePage> {
   Future<int>? dartFuture;
   Future<int>? kotlinFuture;
   Future<int>? rustFuture;
+  Future<int>? goFuture;
+
+  void resetState(){
+
+    setState(() {
+      dartFuture = null ;
+      kotlinFuture= null;
+      rustFuture = null;
+      goFuture = null;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -70,7 +83,8 @@ class _MyHomePageState extends State<MyHomePage> {
               onChanged: (t) => {
                 setState(() {
                   selectedDropDown = t;
-                })
+                }),
+                resetState()
               },
               hint: const Text('Select item'),
             ),
@@ -100,10 +114,10 @@ class _MyHomePageState extends State<MyHomePage> {
               onPressed: () async {
                 if (selectedDropDown != null) {
                   setState(() {
-                    var ktFunc = (int end) {
+                    ktFunc(int end) {
                       return platform.invokeMethod<int>(
                           "getPrimesCount", {"end": end}).then((v) => v ?? -1);
-                    };
+                    }
                     kotlinFuture =
                         ktFunc(int.parse(selectedDropDown as String));
                   });
@@ -126,6 +140,18 @@ class _MyHomePageState extends State<MyHomePage> {
                 }
               },
             ),
+
+
+            LanguageSection(language: 'Golang', selectedDropDown: selectedDropDown, langFuture: goFuture),
+            ElevatedButton(onPressed: () async{
+              if(selectedDropDown !=null){
+
+                setState(() {
+                  goFuture = compute(goPrimes, int.parse(selectedDropDown!));
+                });
+
+              }
+            }, child: const Text("Golang Performance Test"))
           ],
         ),
       ),
