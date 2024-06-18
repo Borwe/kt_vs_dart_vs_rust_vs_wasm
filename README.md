@@ -37,7 +37,8 @@ cargo ndk -t armeabi-v7a -t arm64-v8a -t x86_64 -t x86 --no-strip -o ../android/
 ## Build golang shared library
 
 To build the shared libraries for different Android architectures,run the bat file for windows
-or the Makefile for unix systems,ensure that the ndk paths are set correctly.
+or the Makefile for unix systems.
+**ensure that the ndk paths are set correctly.**
 
 batch for windows
 ```bash
