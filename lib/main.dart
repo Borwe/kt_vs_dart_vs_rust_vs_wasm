@@ -183,11 +183,31 @@ class LanguageSection extends StatelessWidget {
             return const CircularProgressIndicator();
           case ConnectionState.done:
             return Text(
-                "$language did ${snap.data} of times that for primes 0-$selectedDropDown");
+                "$language did ${commaSeparateNumber(snap.data ?? 0)} of times that for primes 0-$selectedDropDown");
           default:
             return const Text("ERROR occured");
         }
       },
     );
   }
+}
+
+String commaSeparateNumber(int number) {
+
+  List<String> parts = number.toStringAsFixed(2).split('.');
+  String integerPart = parts[0];
+
+
+
+  String formattedIntegerPart = '';
+  for (int i = 0; i < integerPart.length; i++) {
+    int reverseIndex = integerPart.length - 1 - i;
+    if (i != 0 && i % 3 == 0) {
+      formattedIntegerPart = ',$formattedIntegerPart';
+    }
+    formattedIntegerPart = integerPart[reverseIndex] + formattedIntegerPart;
+  }
+
+
+  return formattedIntegerPart;
 }
