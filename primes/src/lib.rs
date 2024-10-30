@@ -15,7 +15,7 @@ pub extern "C" fn get_primes(end: i64) -> i64 {
         }
 
         if is_prime {
-            for j in 3..end {
+            for j in (3..end).step_by(2) {
                 if j * i > end {
                     break;
                 }
